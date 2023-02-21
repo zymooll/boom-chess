@@ -6,6 +6,8 @@
 
 using namespace std;
 using namespace custom;
+using namespace game;
+using namespace network;
 
 void Init();
 void Lobby();
@@ -22,6 +24,39 @@ void Lobby() {
 			PrintC("1:Local Play\n2:Online Play\n0:Back\n>");
 			while (1) {
 				char opt = getchar();
+				if (opt == '1') {
+					PrintC("1:Standard Game\n0:Back\n>");
+					while (1) {
+						char opt = getchar();
+						const int MaxGameMode = 1;
+						int GameMode = 0, PlayersCount = 0, MapSize = 0;
+						if (opt >= '1' && opt <= '9' && opt < MaxGameMode) {
+							GameMode = opt - '0';
+							PrintC("How many people play this game?\n>");
+							string opts;
+							cin >> opts;
+							int num = StrToNum(opts);
+							if () {
+
+							}
+							else {
+								PrintC("Invalid Input.\n");
+								Pause();
+								Cls();
+							}
+						}
+						else if (opt == '0') {
+							break;
+						}
+					}
+				}
+				else if (opt == '2') {
+					PrintC("There is nothing here...\n");
+					Pause();
+				}
+				else if (opt == '0') {
+					break;
+				}
 			}
 		}
 		else if (opt == '2') {

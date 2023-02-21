@@ -15,14 +15,22 @@ using namespace std;
 
 namespace custom {
 	void PrintC(string PrintStr, char ColorCode = WHITE, int NewLine = 0);
+	void PrintC(char PrintChar, char ColorCode = WHITE, int NewLine = 0);
 	void SetColor(char ColorCode);
 	void Pause(string Text = "Press Any Buttom To Continue...");
+	void Cls();
+	int StrToInt(string _String);
 
 	void PrintC(string PrintStr, char ColorCode, int NewLine) {
 		SetColor(ColorCode);
 		for (char i : PrintStr) {
 			putchar(i);
 		}
+		if (NewLine)putchar('\n');
+	}
+	void PrintC(char PrintChar, char ColorCode, int NewLine) {
+		SetColor(ColorCode);
+		putchar(PrintChar);
 		if (NewLine)putchar('\n');
 	}
 	void SetColor(char ColorCode) {
@@ -33,5 +41,13 @@ namespace custom {
 			putchar(i);
 		}
 		getchar();
+	}
+	void Cls() {
+		system("cls");
+	}
+	int StrToInt(string _String) {
+		for (char i : _String) {
+			if(!isd)
+		}
 	}
 }
