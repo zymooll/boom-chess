@@ -23,10 +23,13 @@ void Lobby() {
 			while (1) {
 				char opt = getchar();
 			}
-			break;
 		}
 		else if (opt == '2') {
-
+			PrintC("There is nothing here...\n");
+			Pause();
+		}
+		else if (opt == '0') {
+			exit(0);
 		}
 	}
 }
