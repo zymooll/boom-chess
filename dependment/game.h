@@ -21,18 +21,31 @@ namespace game {
 	}dt[10][10];
 	int vis[10],dt_max[10][10];
 	struct BFS_CS {
-		int x, y,p, c;
+		int x, y ,p, c;
 	};
 	queue<BFS_CS>q;
+	int n;
 	void BFS()
 	{
+		int dx[6] = { 0,1,-1,0,0 };
+		int dy[6] = { 0,0,0,1,-1 };
 		while (!q.empty())
 		{
 			BFS_CS cht = q.front(); q.pop();
+			int x = cht.x, y = cht.y, p = cht.p, c = cht.c;
+			for (int i = 1; i <= 4; i++)
+			{
+				int xx = x + dx[i], yy = y + dy[i];
+				if (xx < 1 || yy<1 || xx >= n || yy>n) continue;
+				dt[xx][yy].sz++;
+				dt[xx][yy].player = p;
+				while (dt[xx][yy].sz > dt_max[xx][yy]) q.push(BFS_CS{xx,yy,p,c+1}), dt[xx][yy].sz -= dt_max[xx][yy];
+			}
 		}
 	}
 	void LocalPlay(int Gamemode, int PlayersCount, int MapSize)
 	{
+		n = MapSize;
 		int games_step=0;
 		for (int i = 1; i <= MapSize; i++)
 			for (int j = 1; j <= MapSize; j++)
