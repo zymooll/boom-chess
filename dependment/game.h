@@ -37,7 +37,7 @@ using namespace game {
 						for (int j = 1; j <= MapSize; i++)
 						{
 							PrintC(char(dt[i][j].sz+'0'), colors[dt[i][j].player]);
-							PrintC(' ', "WHITE");
+							PrintC(' ', 'WHITE');
 						}
 						putchar('\n');
 					}
@@ -45,13 +45,13 @@ using namespace game {
 					cin >> x >> y;
 					if (x > MapSize || y > MapSize || x < 1 || y < 1)
 					{
-						PrintC("坐标已出界，请重新输入", "WHITE", 1);
+						PrintC("坐标已出界，请重新输入", 'WHITE', 1);
 						Sleep(1000);
 						goto player_start;
 					}
 					if(dt[x][y].player!=0&&dt[x][y].player!=i)
 					{
-						PrintC("坐标已出界，请重新输入", "WHITE", 1);
+						PrintC("此位置已被占领，请重新输入", 'WHITE', 1);
 						Sleep(1000);
 						goto player_start;
 					}
