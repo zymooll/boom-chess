@@ -46,8 +46,14 @@ namespace custom {
 		system("cls");
 	}
 	int StrToInt(string _String) {
+		int x = 0, f = 1;
 		for (char i : _String) {
-			if(!isd)
+			if (i < '0' || i>'9')return INT_MAX;
+			if (i == '-')f = -1;
 		}
+		for (char i : _String) {
+			if (i >= '0' && i <= '9')x = x * 10 + i - '0';
+		}
+		return x * f;
 	}
 }

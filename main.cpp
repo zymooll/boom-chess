@@ -1,4 +1,6 @@
 #include "./dependment/dependment.h"
+#include "./dependment/game.h"
+#include "./dependment/network.h"
 #include <Windows.h>
 #include <stdio.h>
 #include <iostream>
@@ -7,7 +9,7 @@
 using namespace std;
 using namespace custom;
 using namespace game;
-using namespace network;
+//using namespace network;
 
 void Init();
 void Lobby();

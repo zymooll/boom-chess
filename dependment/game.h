@@ -1,10 +1,16 @@
+#pragma once
+
 #include<xstring>
 #include<windows.h>
+#include<iostream>
+#include<queue>
+#include<stdio.h>
+#include<cstdio>
 #include"dependment\\dependment.h"
 using namespace std;
 using namespace custom;
-using namespace game {
-	string colors[10] = { "WHITE","RED","BLUE","PURPLE","YELLOW","GREEN","CYAN" };
+namespace game {
+	char colors[10] = { WHITE,RED,BLUE,PURPLE,YELLOW,GREEN,CYAN };
 	struct Player {
 		int num = 0;
 		string name="";
@@ -14,14 +20,8 @@ using namespace game {
 		int player=0, sz=0;
 	}dt[10][10];
 	int vis[10],dt_max[10][10];
-	void Win_or_lost()
-	{
-		for (int i = 1; i <= n; i++)
-			if (plays[i].cost == 0 && vis[i] == 0)
-				PrintC("玩家" + char('0' + i) + "失败", WHITE, 1), vis[i] = 1;
-	}
 	struct BFS_CS {
-		int x, y, c;
+		int x, y,p, c;
 	};
 	queue<BFS_CS>q;
 	void BFS()
@@ -67,19 +67,24 @@ using namespace game {
 						Sleep(1000);
 						goto player_start;
 					}
-					if(dt[x][y].player!=0&&dt[x][y].player!=i)
+					if(dt[x][y].player!=0&&dt[x][y].player!=k)
 					{
 						PrintC("此位置已被占领，请重新输入", WHITE, 1);
 						Sleep(1000);
 						goto player_start;
 					}
-					dt[x][y].player = i;
+					dt[x][y].player = k;
 					dt[x][y].sz++;
 					if (dt[x][y].sz >= dt_max[x][y])
 						q.push({ x,y,dt[x][y].player,1}),
 						BFS();
 				}
-				Win_or_lost();
+				for (int i = 1; i <= PlayersCount; i++)
+					if (plays[i].cost == 0 && vis[i] == 0) {
+						string FailedPlayerName;
+						FailedPlayerName += char('0' + i);
+						PrintC("玩家" + FailedPlayerName +"失败", WHITE, 1), vis[i] = 1;
+					}
 			}
 		}
 	}
