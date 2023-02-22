@@ -35,6 +35,7 @@ void Lobby() {
 							PrintC("How many people play this game?\n>");
 							string opts;
 							cin >> opts;
+							/*
 							int num = StrToNum(opts);
 							if () {
 
@@ -44,6 +45,7 @@ void Lobby() {
 								Pause();
 								Cls();
 							}
+							*/
 						}
 						else if (opt == '0') {
 							break;
