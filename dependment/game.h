@@ -13,16 +13,34 @@ using namespace game {
 	struct maps {
 		int player=0, sz=0;
 	}dt[10][10];
-	vis[10];
+	int vis[10],dt_max[10][10];
 	void Win_or_lost()
 	{
 		for (int i = 1; i <= n; i++)
 			if (plays[i].cost == 0 && vis[i] == 0)
 				PrintC("Íæ¼Ò" + char('0' + i) + "Ê§°Ü", "WHITE", 1), vis[i] = 1;
 	}
+	struct BFS_CS {
+		int x, y, c;
+	};
+	queue<BFS_CS>q;
+	void BFS()
+	{
+		while (!q.empty())
+		{
+
+		}
+	}
 	void LocalPlay(int Gamemode, int PlayersCount, int MapSize)
 	{
 		int games_step=0;
+		for (int i = 1; i <= MapSize; i++)
+			for (int j = 1; j <= MapSize; j++)
+				dt_max[i][j] = 3;
+		for (int i = 2; i < MapSize; i++)
+			for (int j = 2; j < MapSize; j++)
+				dt_max[i][j] = 4;
+		dt_max[1][1] = dt_max[1][MapSize] = dt_max[MapSize][1] = dt_max[MapSize][MapSize] = 2;
 		if (Gamemode == 1)
 		{
 			while(1)
@@ -55,6 +73,11 @@ using namespace game {
 						Sleep(1000);
 						goto player_start;
 					}
+					dt[x][y].player = i;
+					dt[x][y].sz++;
+					if (dt[x][y].sz >= dt_max[x][y])
+						q.push({ x,y,dt[x][y].player,1}),
+						BFS();
 				}
 				Win_or_lost();
 			}
