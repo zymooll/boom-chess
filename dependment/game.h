@@ -28,7 +28,7 @@ using namespace game {
 	{
 		while (!q.empty())
 		{
-
+			BFS_CS cht = q.front(); q.pop();
 		}
 	}
 	void LocalPlay(int Gamemode, int PlayersCount, int MapSize)
