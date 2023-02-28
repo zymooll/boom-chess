@@ -43,8 +43,23 @@ namespace game {
 			}
 		}
 	}
+	void GAMEOVER(int tmax)
+	{
+		system("cls");
+		PrintC("GAMEOVER", WRITE, 1);
+		for(int i=1;i<=tmax;i++)
+			if (Plays[i].cost)
+			{
+				PrintC("player ",WRITE,0);
+				printf("%d : ", Plays[i].num);
+				cout << Plays[i].name;
+				PrintC(" win!", WRITE, 1);
+				break;
+			}
+	}
 	void LocalPlay(int Gamemode, int PlayersCount, int MapSize)
 	{
+		int cntplayer=PlayersCount;
 		n = MapSize;
 		int games_step=0;
 		for (int i = 1; i <= MapSize; i++)
@@ -96,8 +111,13 @@ namespace game {
 					if (plays[i].cost == 0 && vis[i] == 0) {
 						string FailedPlayerName;
 						FailedPlayerName += char('0' + i);
-						PrintC("Íæ¼Ò" + FailedPlayerName +"Ê§°Ü", WHITE, 1), vis[i] = 1;
+						PrintC("Íæ¼Ò" + FailedPlayerName +"Ê§°Ü", WHITE, 1), vis[i] = 1 , cntplayer--;
 					}
+				if (cntplayer == 1)
+				{
+					GAMEOVER(PlayersCount);
+					return;
+				}
 			}
 		}
 	}
